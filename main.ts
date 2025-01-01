@@ -855,17 +855,15 @@ statusbar.max = 20
 controller.moveSprite(hero, 100, 0)
 hero.ay = 500
 scene.cameraFollowSprite(hero)
-forever(function () {
-	
-})
 game.onUpdateInterval(100, function () {
     if (enemy_pole.length > 0) {
         pole_i += 1
-        if (pole_i > enemy_pole.length) {
+        if (pole_i >= enemy_pole.length) {
             pole_i = 0
         }
         if (enemy_pole[pole_i].x < hero.x) {
             enemy_otocka = 1
+            mySpri.setVelocity(50, 50)
             enemy_pole[pole_i].x += 1
         } else {
             enemy_otocka = 2
