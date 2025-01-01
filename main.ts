@@ -1,3 +1,63 @@
+controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
+    hero.vy = -230
+    pause(1200)
+})
+function enemy_AI (enemy: Sprite, hero: Sprite) {
+	
+}
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (otocka == 1) {
+        shield_on = 1
+        animation.runImageAnimation(
+        hero,
+        [img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . f f f f f f . . . . . 
+            . . . f f e e e e f 2 f . . . . 
+            . . f f e e e e f 2 2 2 f . . . 
+            . . f e e e f f e e e e f . . . 
+            . . f f f f e e 2 2 2 2 e f . . 
+            . . f e 2 2 2 f f f f e 2 f . . 
+            . f f f f f f f e e e f f f . . 
+            . f f e 4 4 e b f 4 4 e e f . . 
+            . f e e 4 d 4 1 f d d e f f . . 
+            . . f e e e 4 d d d d f d d f . 
+            . . . . f e e 4 e e e f b b f . 
+            . . . . f 2 2 2 4 d d e b b f . 
+            . . . f f 4 4 4 e d d e b f . . 
+            . . . f f f f f f e e f f . . . 
+            . . . . f f . . . f f f . . . . 
+            `],
+        500,
+        true
+        )
+    } else {
+        shield_on = 1
+        animation.runImageAnimation(
+        hero,
+        [img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . f f f f f f . . . . . 
+            . . . . f 2 f e e e e f f . . . 
+            . . . f 2 2 2 f e e e e f f . . 
+            . . . f e e e e f f e e e f . . 
+            . . f e 2 2 2 2 e e f f f f . . 
+            . . f 2 e f f f f 2 2 2 e f . . 
+            . . f f f e e e f f f f f f f . 
+            . . f e e 4 4 f b e 4 4 e f f . 
+            . . f f e d d f 1 4 d 4 e e f . 
+            . f d d f d d d d 4 e e e f . . 
+            . f b b f e e e 4 e e f . . . . 
+            . f b b e d d 4 2 2 2 f . . . . 
+            . . f b e d d e 4 4 4 f f . . . 
+            . . . f f e e f f f f f f . . . 
+            . . . . f f f . . . f f . . . . 
+            `],
+        500,
+        true
+        )
+    }
+})
 function jina_mistnost_dozadu () {
     mistnost += -1
     if (mistnost == 0) {
@@ -40,106 +100,9 @@ function jina_mistnost_dozadu () {
     	
     }
 }
-controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
-    hero.vy = -230
-    pause(1200)
-})
-function jina_mistnost_dopredu () {
-    mistnost += 1
-    if (mistnost == 1) {
-        tiles.setCurrentTilemap(tilemap`level4`)
-        animation.runMovementAnimation(
-        hero,
-        animation.animationPresets(animation.flyToCenter),
-        1,
-        false
-        )
-        game.splash("jump with up button")
-    } else if (mistnost == 2) {
-        tiles.setCurrentTilemap(tilemap`level7`)
-        animation.runMovementAnimation(
-        hero,
-        animation.animationPresets(animation.flyToCenter),
-        1,
-        false
-        )
-        game.splash("hit with a button if you move")
-    } else if (mistnost == 3) {
-        tiles.setCurrentTilemap(tilemap`level7`)
-        animation.runMovementAnimation(
-        hero,
-        animation.animationPresets(animation.flyToCenter),
-        1,
-        false
-        )
-        game.splash("shield with b button if you move")
-    } else if (mistnost == 4) {
-        tiles.setCurrentTilemap(tilemap`level7`)
-        animation.runMovementAnimation(
-        hero,
-        animation.animationPresets(animation.flyToCenter),
-        1,
-        false
-        )
-        game.splash("enemy is ghost like this:")
-        enemytutorial = sprites.create(assets.image`enemy_tutorial`, SpriteKind.Player)
-    } else {
-    	
-    }
-}
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (otocka == 1) {
-        animation.runImageAnimation(
-        hero,
-        [img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . f f f f f f . . . . . 
-            . . . f f e e e e f 2 f . . . . 
-            . . f f e e e e f 2 2 2 f . . . 
-            . . f e e e f f e e e e f . . . 
-            . . f f f f e e 2 2 2 2 e f . . 
-            . . f e 2 2 2 f f f f e 2 f . . 
-            . f f f f f f f e e e f f f . . 
-            . f f e 4 4 e b f 4 4 e e f . . 
-            . f e e 4 d 4 1 f d d e f f . . 
-            . . f e e e 4 d d d d f d d f . 
-            . . . . f e e 4 e e e f b b f . 
-            . . . . f 2 2 2 4 d d e b b f . 
-            . . . f f 4 4 4 e d d e b f . . 
-            . . . f f f f f f e e f f . . . 
-            . . . . f f . . . f f f . . . . 
-            `],
-        500,
-        true
-        )
-    } else {
-        animation.runImageAnimation(
-        hero,
-        [img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . f f f f f f . . . . . 
-            . . . . f 2 f e e e e f f . . . 
-            . . . f 2 2 2 f e e e e f f . . 
-            . . . f e e e e f f e e e f . . 
-            . . f e 2 2 2 2 e e f f f f . . 
-            . . f 2 e f f f f 2 2 2 e f . . 
-            . . f f f e e e f f f f f f f . 
-            . . f e e 4 4 f b e 4 4 e f f . 
-            . . f f e d d f 1 4 d 4 e e f . 
-            . f d d f d d d d 4 e e e f . . 
-            . f b b f e e e 4 e e f . . . . 
-            . f b b e d d 4 2 2 2 f . . . . 
-            . . f b e d d e 4 4 4 f f . . . 
-            . . . f f e e f f f f f f . . . 
-            . . . . f f f . . . f f . . . . 
-            `],
-        500,
-        true
-        )
-    }
-})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (otocka == 1) {
+        attack_on = 1
         animation.runImageAnimation(
         hero,
         [img`
@@ -246,7 +209,9 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         100,
         false
         )
+        pause(500)
     } else {
+        attack_on = 1
         animation.runImageAnimation(
         hero,
         [img`
@@ -257,7 +222,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             .......cdc.fe2222eeffff.
             .......cddcf2effff222ef.
             ........cddcffeeefffffff
-            .........cddce44fbe44eff
+            .........cd3ce44fbe44eff
             ..........cdceddf14d4eef
             ..........cccdeddd4eeef.
             ...........edd4e44eeff..
@@ -353,6 +318,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         100,
         false
         )
+        pause(500)
     }
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -433,10 +399,131 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     )
 })
 controller.right.onEvent(ControllerButtonEvent.Released, function () {
-    otocka = 0
+	
 })
 controller.left.onEvent(ControllerButtonEvent.Released, function () {
-    otocka = 0
+	
+})
+function enemy_attack (enemy: Sprite) {
+    if (enemy_otocka == 1) {
+        animation.runImageAnimation(
+        enemy,
+        [img`
+            ........................
+            ........................
+            ........................
+            ..........ffff..........
+            ........ff1111ff........
+            .......fb111111bf.......
+            ......fbd1111111f.......
+            ......fdd1111111df......
+            ......fddd111111df......
+            ......fdddddd111df......
+            ......fdddddd111df......
+            ......fbddddddd1df......
+            ......ffbbddbfd1df......
+            .......fcbbdcfddbf......
+            .......fffbddccffff.....
+            .......ffffcfbbb1bcf....
+            ......ffffffffcd1b1f....
+            ...ffffffffff..fdfdf....
+            .....ffffff.....f.f.....
+            ........................
+            ........................
+            ........................
+            ........................
+            ........................
+            `,img`
+            ........................
+            ........................
+            ........................
+            ........................
+            .........fffff..........
+            .......ffb1111ff........
+            ......fb1111111bf.......
+            ......f111111111f.......
+            .....ffff1111111df......
+            ....fb111c1dd111df......
+            ....ffb1b1fdcf11bf......
+            .....ffbfbfb11111f......
+            ......ffffcfdb1b1f......
+            .......fcccfcfbfbf......
+            ........ffffffffff......
+            .........ffffff.........
+            .........ffffff.........
+            .....f..fffffff.........
+            .....fffffffff..........
+            ......fffffff...........
+            ........................
+            ........................
+            ........................
+            ........................
+            `],
+        500,
+        false
+        )
+    } else {
+        animation.runImageAnimation(
+        enemy,
+        [img`
+            ........................
+            ........................
+            ........................
+            ........................
+            ..........fffff.........
+            ........ff1111bff.......
+            .......fb1111111bf......
+            .......f111111111f......
+            ......fd1111111ffff.....
+            ......fd111dd1c111bf....
+            ......fb11fcdf1b1bff....
+            ......f11111bfbfbff.....
+            ......f1b1bdfcffff......
+            ......fbfbfcfcccf.......
+            ......ffffffffff........
+            .........ffffff.........
+            .........ffffff.........
+            .........fffffff..f.....
+            ..........fffffffff.....
+            ...........fffffff......
+            ........................
+            ........................
+            ........................
+            ........................
+            `,img`
+            ........................
+            ........................
+            ........................
+            ..........ffff..........
+            ........ff1111ff........
+            .......fb111111bf.......
+            .......f1111111dbf......
+            ......fd1111111ddf......
+            ......fd111111dddf......
+            ......fd111ddddddf......
+            ......fd111ddddddf......
+            ......fd1dddddddbf......
+            ......fd1dfbddbbff......
+            ......fbddfcdbbcf.......
+            .....ffffccddbfff.......
+            ....fcb1bbbfcffff.......
+            ....f1b1dcffffffff......
+            ....fdfdf..ffffffffff...
+            .....f.f.....ffffff.....
+            ........................
+            ........................
+            ........................
+            ........................
+            ........................
+            `],
+        500,
+        false
+        )
+    }
+}
+statusbars.onZero(StatusBarKind.EnemyHealth, function (status) {
+    sprites.destroy(enemytutorial)
+    pause(9999999999999999999999999999999)
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     otocka = 1
@@ -516,22 +603,107 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     )
 })
 controller.A.onEvent(ControllerButtonEvent.Released, function () {
+    attack_on = 0
     animation.stopAnimation(animation.AnimationTypes.All, hero)
 })
 controller.B.onEvent(ControllerButtonEvent.Released, function () {
+    shield_on = 0
     animation.stopAnimation(animation.AnimationTypes.All, hero)
 })
 scene.onOverlapTile(SpriteKind.Player, tiles.util.arrow14, function (sprite, location) {
     jina_mistnost_dozadu()
 })
+function jina_mistnost_dopredu () {
+    mistnost += 1
+    if (mistnost == 1) {
+        tiles.setCurrentTilemap(tilemap`level4`)
+        animation.runMovementAnimation(
+        hero,
+        animation.animationPresets(animation.flyToCenter),
+        1,
+        false
+        )
+        game.splash("jump with up button")
+    } else if (mistnost == 2) {
+        tiles.setCurrentTilemap(tilemap`level7`)
+        animation.runMovementAnimation(
+        hero,
+        animation.animationPresets(animation.flyToCenter),
+        1,
+        false
+        )
+        game.splash("hit with button A")
+    } else if (mistnost == 3) {
+        tiles.setCurrentTilemap(tilemap`level7`)
+        animation.runMovementAnimation(
+        hero,
+        animation.animationPresets(animation.flyToCenter),
+        1,
+        false
+        )
+        game.splash("shield with button B")
+    } else if (mistnost == 4) {
+        tiles.setCurrentTilemap(tilemap`level7`)
+        animation.runMovementAnimation(
+        hero,
+        animation.animationPresets(animation.flyToCenter),
+        1,
+        false
+        )
+        game.splash("enemy is ghost like this:")
+        enemytutorial = sprites.create(assets.image`enemy_tutorial`, SpriteKind.Enemy)
+    } else if (mistnost == 5) {
+        tiles.setCurrentTilemap(tilemap`level7`)
+        animation.runMovementAnimation(
+        hero,
+        animation.animationPresets(animation.flyToCenter),
+        1,
+        false
+        )
+        statusbar2 = statusbars.create(20, 4, StatusBarKind.EnemyHealth)
+        statusbar2.setColor(2, 7)
+        statusbar2.attachToSprite(enemytutorial)
+        enemytutorial.ay = 500
+        game.splash("defeat enemy")
+    } else if (mistnost == 6) {
+        tiles.setCurrentTilemap(tilemap`level17`)
+        enemy_tutorial_shield = sprites.create(assets.image`enemy_tutorial`, SpriteKind.Enemy)
+        animation.runMovementAnimation(
+        hero,
+        animation.animationPresets(animation.flyToCenter),
+        1,
+        false
+        )
+        enemy_tutorial_shield.ay = 500
+        statusbar2 = statusbars.create(20, 4, StatusBarKind.EnemyHealth)
+        statusbar2.setColor(2, 7)
+        statusbar2.attachToSprite(enemy_tutorial_shield)
+        enemy_pole.push(enemy_tutorial_shield)
+        game.splash("shield!enemy is atacking on you")
+    }
+}
 scene.onOverlapTile(SpriteKind.Player, tiles.util.arrow11, function (sprite, location) {
     jina_mistnost_dopredu()
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    if (attack_on == 1) {
+        statusbar2.value += -2
+        pause(500)
+    }
+})
+let pole_i = 0
+let enemy_tutorial_shield: Sprite = null
+let statusbar2: StatusBarSprite = null
 let enemytutorial: Sprite = null
+let enemy_otocka = 0
+let attack_on = 0
+let shield_on = 0
 let hero: Sprite = null
 let mistnost = 0
+let enemy_pole: Sprite[] = []
 let otocka = 0
 otocka = 0
+enemy_pole = []
 mistnost = 0
 scene.setBackgroundImage(img`
     3333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
@@ -685,4 +857,19 @@ hero.ay = 500
 scene.cameraFollowSprite(hero)
 forever(function () {
 	
+})
+game.onUpdateInterval(100, function () {
+    if (enemy_pole.length > 0) {
+        pole_i += 1
+        if (pole_i > enemy_pole.length) {
+            pole_i = 0
+        }
+        if (enemy_pole[pole_i].x < hero.x) {
+            enemy_otocka = 1
+            enemy_pole[pole_i].x += 1
+        } else {
+            enemy_otocka = 2
+            enemy_pole[pole_i].x += -1
+        }
+    }
 })
